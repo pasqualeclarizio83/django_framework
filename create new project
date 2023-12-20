@@ -1,8 +1,18 @@
-django-admin startproject yourprojectname
+django-admin startproject onlinestore
 
 da terminale:
 
 
 cd nuovo_progetto
 
-cd youtprojectname
+cd onlinestore
+
+
+python manage.py migrate
+
+
+python manage.py createsuperuser
+
+clear
+
+python manage.py startapp products
