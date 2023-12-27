@@ -1,0 +1,155 @@
+è fondamentale:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+
+il progetto si chiama: onlinestore
+
+
+python manage.py createsuperuser
+
+
+http://127.0.0.1:8000/admin/
+
+username: admin
+
+password: admin
+
+
+
+il model:
+
+
+from django.db import models
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=120)
+    location = models.CharField(max_length=120)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    manufacturer = models.ForeignKey(Manufacturer,
+                                     on_delete=models.CASCADE,
+                                     related_name="products")
+    name = models.CharField(max_length=120)
+    description = models.TextField(blank=True, null=True)
+    photo = models.ImageField(blank=True, null=True)
+    price = models.FloatField()
+    shipping_cost = models.FloatField()
+    quantity = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+
+admin:
+
+
+
+from django.contrib import admin
+
+from .models import Product, Manufacturer
+
+admin.site.register(Product)
+admin.site.register(Manufacturer)
+
+
+
+
+views:
+
+
+from django.http import JsonResponse
+
+from .models import Manufacturer, Product
+
+
+def product_list(request):
+    products = Product.objects.all()  # [:30]
+    data = {"products": list(products.values())}  # .values("pk", "name")
+    response = JsonResponse(data)
+    return response
+
+
+def product_detail(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+    except Product.DoesNotExist:
+        response = JsonResponse(
+            {"error": {"code": 404, "message": "product not found!"}}, status=404
+        )
+    else:
+        data = {
+            "product": {
+                "name": product.name,
+                "manufacturer": product.manufacturer.name,
+                "description": product.description,
+                "photo": product.photo.url,
+                "price": product.price,
+                "shipping_cost": product.shipping_cost,
+                "quantity": product.quantity,
+            }
+        }
+        response = JsonResponse(data)
+    return response
+
+
+def manufacturer_list(request):
+    manufacturers = Manufacturer.objects.filter(active=True)
+    data = {"manufacturers": list(manufacturers.values())}
+    response = JsonResponse(data)
+    return response
+
+
+def manufacturer_detail(request, pk):
+    try:
+        manufacturer = Manufacturer.objects.get(pk=pk)
+    except Manufacturer.DoesNotExist:
+        response = JsonResponse(
+            {"error": {"code": 404, "message": "manufacturer not found!"}}, status=404
+        )
+    else:
+        manufacturer_products = manufacturer.products.all()
+        data = {
+            "manufacturer": {
+                "name": manufacturer.name,
+                "location": manufacturer.location,
+                "active": manufacturer.active,
+                "products": list(manufacturer_products.values()),
+            }
+        }
+        response = JsonResponse(data)
+    return response
+
+
+
+
+urls:
+
+
+from django.urls import path
+from .views import (manufacturer_detail, manufacturer_list,
+                    product_detail, product_list)
+
+urlpatterns = [
+    path("products/", product_list, name="product-list"),
+    path("products/<int:pk>/", product_detail, name="product-detail"),
+
+    path("manufacturers/", manufacturer_list, name="manufacturer-list"),
+    path("manufacturers/<int:pk>/", manufacturer_detail, name="manufacturer-detail")
+]
+
+
+
+
+
+
+
