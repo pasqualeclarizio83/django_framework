@@ -13,4 +13,4 @@ class Articolo(models.Model):
   giornalista = models.ForeignKey(Giornalista, on_delete=models.CASCADE, related_name="articoli")
 
   def __str__(self):
-    return self.titolo
+    return self.titolo 

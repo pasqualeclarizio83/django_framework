@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from prima_app import views as prima_app_views
+from news.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('homepage/', prima_app_views.homepage)
+    path("", home, name="homeview")
 ]
