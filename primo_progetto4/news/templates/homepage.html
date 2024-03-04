@@ -1,0 +1,27 @@
+<h1>Questa è la homepage del sito</h1>
+
+{{ articoli }}
+
+{{ giornalisti }}
+
+<br>
+
+<h4>Giornalisti:</h4>
+{% for giornalista in giornalisti %} 
+    <p> {{ giornalista.nome }} {{ giornalista.cognome }}</p>
+    <p>Articoli:</p>
+    {% for articolo in giornalista.articoli.all %}
+        <p>{{ articolo.titolo }}</p>
+    {% empty %}
+    <p>{{ giornalista.nome }} non ha scritto alcun articolo</p>
+    {% endfor %}
+{% endfor %}
+
+<hr>
+
+<h4>Articoli:</h4>
+{% for articolo in articoli %} 
+    <p><strong>Titolo:</strong>{{ articolo.titolo }}</p>
+    <p><strong>Contenuto:</strong>{{ articolo.contenuto }}</p>
+    <p><strong>Autore:</strong>{{ articolo.giornalista }}</p>
+{% endfor %}
