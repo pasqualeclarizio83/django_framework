@@ -77,9 +77,9 @@ class AnagraficaUpdateView(UpdateView):
     model = Anagrafica
     template_name = 'nuova_app/modifica_anagrafica.html'
     fields = ['nome', 'cognome']
-    success_url = reverse_lazy('mostra_lista')
+    success_url = reverse_lazy('lista_anagrafiche')
 
 class AnagraficaDeleteView(DeleteView):
     model = Anagrafica
     template_name = 'nuova_app/elimina_anagrafica.html'
-    success_url = reverse_lazy('mostra_lista')
+    success_url = reverse_lazy('lista_anagrafiche')
