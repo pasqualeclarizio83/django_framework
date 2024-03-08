@@ -71,8 +71,6 @@ class AnagraficaUpdateView(View):
         form = AnagraficaForm(instance=anagrafica)
         return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form})
 
-class AnagraficaDeleteView(View):
-    def delete(self, request, pk):
-        anagrafica = get_object_or_404(Anagrafica, pk=pk)
-        anagrafica.delete()
-        return redirect('anagrafica_list')
+class AnagraficaDeleteView(DeleteView):
+    model = Anagrafica
+    success_url = reverse_lazy('anagrafica_list')
