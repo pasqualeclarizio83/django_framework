@@ -1,0 +1,721 @@
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+Ho bisogno della views.py
+richiamando una classe che permetta le CRUD
+
+
+
+
+
+
+
+
+
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+dato questo template: dettaglio_anagrafica.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+{% endblock lista %}
+
+creami il dettaglio_anagrafica.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+dato questo template: crea_anagrafica.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+{% endblock lista %}
+
+creami il crea_anagrafica.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+dato questo template: mostra_lista.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Anagrafiche</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for anagrafica in anagrafiche %}
+                        <tr>
+                            <td>{{ anagrafica.nome }}</td>
+                            <td>{{ anagrafica.cognome }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock lista %}
+
+creami la modifica e la cancellazione
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+dato questo template: mostra_lista.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Anagrafiche</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for anagrafica in anagrafiche %}
+                        <tr>
+                            <td>{{ anagrafica.nome }}</td>
+                            <td>{{ anagrafica.cognome }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock lista %}
+
+nel template: mostra_lista.html
+creami l'indice affinchè dal mostra_lista.html, io possa cliccare per la modifica o la cancellazione
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django, dato il seguente models.py
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+dato questo template: mostra_lista.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+<div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Anagrafiche</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for anagrafica in anagrafiche %}
+                        <tr>
+                            <td>{{ anagrafica.nome }}</td>
+                            <td>{{ anagrafica.cognome }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock lista %}
+
+nel template: mostra_lista.html
+creami un pulsante che mi permetta di accedere all'url: anagrafica
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django:
+e avendo il seguente models.py:
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+nella views.py
+creami una classe che mi permetta di far le CRUD
+
+con i rispettivi templates
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django:
+e avendo il seguente models.py:
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+creami il template: anagrafica_list.html
+
+
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrafiche</title>
+</head>
+<body>
+    <h1>Anagrafiche</h1>
+    <ul>
+        {% for anagrafica in anagrafiche %}
+            <li>{{ anagrafica.nome }} {{ anagrafica.cognome }}</li>
+        {% endfor %}
+    </ul>
+    <div>
+        <a href="{% url 'anagrafica_create' %}">Aggiungi Anagrafica</a>
+    </div>
+</body>
+</html>
+
+    
+{% endblock lista %}
+
+con i rispettivi indici, per la modifica e la cancellazione
+
+
+
+
+
+
+
+da endpoint:
+
+
+anagrafica/1/update/
+
+
+
+TypeError at /anagrafica/1/update/
+
+AnagraficaCRUDView.get() got an unexpected keyword argument 'pk'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django:
+e avendo il seguente models.py:
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+creami una classe con i metodi get, post, delete
+
+creami per ogni metodi un template: anagrafica_list.html
+anagrafica_modifica.html
+
+
+e creami i rispettimi urls.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sviluppando in Django:
+e avendo il seguente models.py:
+
+
+from django.db import models
+
+class Anagrafica(models.Model):
+    nome = models.CharField(max_length=30, blank=True, null=True)
+    cognome = models.CharField(max_length=30, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.nome) + " " + str(self.cognome)
+
+    class Meta:
+        verbose_name = "Anagrafica"
+        verbose_name_plural = "Anagrafiche"
+
+
+
+creami una classe con i metodi get, post, delete
+
+creami per ogni metodi un template: anagrafica_list.html
+con la lettura dei dati
+anagrafica_modifica.html per la modifica dei dati
+e anagrafica_form.html per la creazione di un nuovo form
+
+
+e creami i rispettimi urls.py
+con i rispettivi endpoint
+
+
+
+

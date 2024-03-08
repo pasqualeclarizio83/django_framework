@@ -1,0 +1,35 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrafiche</title>
+</head>
+<body>
+    <h1>Anagrafiche</h1>
+
+    <div>
+        <a href="{% url 'anagrafica_crea' %}">Crea Nuova Anagrafica</a>
+    </div>
+
+    
+    <ul>
+        {% for anagrafica in anagrafiche %}
+            <li>{{ anagrafica.nome }} {{ anagrafica.cognome }}
+                <a href="{% url 'anagrafica_modifica' anagrafica.pk %}">Modifica</a>
+                <a href="{% url 'anagrafica_delete' anagrafica.pk %}">Cancella</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
+    
+{% endblock lista %}
