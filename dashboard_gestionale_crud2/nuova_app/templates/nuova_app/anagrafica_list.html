@@ -14,22 +14,17 @@
 </head>
 <body>
     <h1>Anagrafiche</h1>
-
-    <div>
-        <a href="{% url 'anagrafica_crea' %}">Crea Nuova Anagrafica</a>
-    </div>
-
-    
     <ul>
         {% for anagrafica in anagrafiche %}
             <li>{{ anagrafica.nome }} {{ anagrafica.cognome }}
                 <a href="{% url 'anagrafica_modifica' anagrafica.pk %}">Modifica</a>
-                <a href="{% url 'anagrafica_delete' anagrafica.pk %}">Cancella</a>
+                <a href="{% url 'anagrafica_cancella' anagrafica.pk %}">Cancella</a>
             </li>
         {% endfor %}
     </ul>
-    
+    <a href="{% url 'anagrafica_new_form' %}">Crea Nuova Anagrafica</a>
 </body>
 </html>
+
     
 {% endblock lista %}

@@ -40,27 +40,38 @@ from django.urls import reverse_lazy
 # Anagrafica Form
 from .forms import AnagraficaForm
 
-class AnagraficaCRUDView(View):
-    def get(self, request, pk=None):
-        if pk is not None:
-            anagrafica = get_object_or_404(Anagrafica, pk=pk)
-            form = AnagraficaForm(instance=anagrafica)
-            return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form, 'anagrafica': anagrafica})
-        else:
-            anagrafiche = Anagrafica.objects.all()
-            return render(request, 'nuova_app/anagrafica_list.html', {'anagrafiche': anagrafiche})
+class AnagraficaListView(View):
+    def get(self, request):
+        anagrafiche = Anagrafica.objects.all()
+        return render(request, 'nuova_app/anagrafica_list.html', {'anagrafiche': anagrafiche})
 
-    def post(self, request, pk=None):
-        if pk is not None:
-            anagrafica = get_object_or_404(Anagrafica, pk=pk)
-            form = AnagraficaForm(request.POST, instance=anagrafica)
-        else:
-            form = AnagraficaForm(request.POST)
+class AnagraficaCreateView(View):
+    def post(self, request):
+        form = AnagraficaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('anagrafica_list')
+        return render(request, 'nuova_app/anagrafica_form.html', {'form': form})
+
+    def get(self, request):
+        form = AnagraficaForm()
+        return render(request, 'nuova_app/anagrafica_form.html', {'form': form})
+
+class AnagraficaUpdateView(View):
+    def post(self, request, pk):
+        anagrafica = get_object_or_404(Anagrafica, pk=pk)
+        form = AnagraficaForm(request.POST, instance=anagrafica)
         if form.is_valid():
             form.save()
             return redirect('anagrafica_list')
         return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form})
 
+    def get(self, request, pk):
+        anagrafica = get_object_or_404(Anagrafica, pk=pk)
+        form = AnagraficaForm(instance=anagrafica)
+        return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form})
+
+class AnagraficaDeleteView(View):
     def delete(self, request, pk):
         anagrafica = get_object_or_404(Anagrafica, pk=pk)
         anagrafica.delete()
