@@ -1,0 +1,25 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!-- deposito_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Depositi</title>
+</head>
+<body>
+    <h1>Lista dei Depositi</h1>
+    <ul>
+    {% for deposito in object_list %}
+        <li>{{ deposito }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+    
+{% endblock lista %}

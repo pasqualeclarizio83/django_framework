@@ -1,3 +1,7 @@
+Sviluppando in Django
+dato il seguente models.py
+
+
 from django.db import models
 
 class Deposito(models.Model):
@@ -10,3 +14,16 @@ class Deposito(models.Model):
     class Meta:
         verbose_name = "Deposito"
         verbose_name_plural = "Depositi"
+
+
+
+
+devo creare: views.py
+adottando la Classe per la creazione, modifica, cancellazione
+
+
+e crea anche dei template, per la creazione, modifica e cancellazione
+
+
+ed è bene creare anche: urls.py
+con gli endpoint

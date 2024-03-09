@@ -13,8 +13,6 @@ from django.http import JsonResponse, HttpResponse
 import json
 from requests.exceptions import HTTPError
 
-from .models import Anagrafica
-
 class HomeVuota(View): # è vuota
     def get(self, request, *args, **kwargs):
         try:
@@ -29,48 +27,28 @@ class HomeVuota(View): # è vuota
             print (e)
 
 
-# GESTISCO ANAGRAFICA
-
-
-from .forms import AnagraficaForm
-
-# CRUD
-    
+# views.py
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-# Anagrafica Form
-from .forms import AnagraficaForm
+from .models import Deposito
 
-class AnagraficaListView(View):
-    def get(self, request):
-        anagrafiche = Anagrafica.objects.all()
-        return render(request, 'nuova_app/anagrafica_list.html', {'anagrafiche': anagrafiche})
+class DepositoListView(ListView):
+    model = Deposito
+    template_name = 'nuova_app/deposito_list.html'
 
-class AnagraficaCreateView(View):
-    def post(self, request):
-        form = AnagraficaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('anagrafica_list')
-        return render(request, 'nuova_app/anagrafica_form.html', {'form': form})
+class DepositoCreateView(CreateView):
+    model = Deposito
+    template_name = 'nuova_app/deposito_form.html'
+    fields = ['loc_deposito', 'descrizione']
+    success_url = reverse_lazy('deposito_list')
 
-    def get(self, request):
-        form = AnagraficaForm()
-        return render(request, 'nuova_app/anagrafica_form.html', {'form': form})
+class DepositoUpdateView(UpdateView):
+    model = Deposito
+    template_name = 'nuova_app/deposito_form.html'
+    fields = ['loc_deposito', 'descrizione']
+    success_url = reverse_lazy('deposito_list')
 
-class AnagraficaUpdateView(View):
-    def post(self, request, pk):
-        anagrafica = get_object_or_404(Anagrafica, pk=pk)
-        form = AnagraficaForm(request.POST, instance=anagrafica)
-        if form.is_valid():
-            form.save()
-            return redirect('anagrafica_list')
-        return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form})
-
-    def get(self, request, pk):
-        anagrafica = get_object_or_404(Anagrafica, pk=pk)
-        form = AnagraficaForm(instance=anagrafica)
-        return render(request, 'nuova_app/anagrafica_modifica.html', {'form': form})
-
-class AnagraficaDeleteView(DeleteView):
-    model = Anagrafica
-    success_url = reverse_lazy('anagrafica_list')
+class DepositoDeleteView(DeleteView):
+    model = Deposito
+    template_name = 'nuova_app/deposito_confirm_delete.html'
+    success_url = reverse_lazy('deposito_list')
