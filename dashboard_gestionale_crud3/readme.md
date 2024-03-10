@@ -5,11 +5,11 @@ Django
 
 ## Descrizione
 
-Una semplice dashboard con la possibilità
-di inserire dati Anagrafici
-
-E' la continua del progetto precedente
-con nuove funzionalità
+Una Dashboard per la gestione dei Depositi
+I depositi sono gestibili attraverso CRUD
+ma nel processo esiste un algoritmo
+che permette di prendere i dati da un CSV
+e caricarli nella rispettiva Tabella
 
 
 

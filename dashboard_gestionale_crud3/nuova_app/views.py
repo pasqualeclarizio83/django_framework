@@ -13,9 +13,38 @@ from django.http import JsonResponse, HttpResponse
 import json
 from requests.exceptions import HTTPError
 
+import csv
+from .models import Deposito
+
+def popola_tabella_deposito_da_csv(file_path):
+    # Apri il file CSV e leggi i dati
+    with open(file_path, mode='r') as file:
+        reader = csv.DictReader(file, delimiter=';')
+        for row in reader:
+            # Ottieni i dati dal CSV
+            loc_deposito = row['DEPOSITO']
+            descrizione = f"Deposito {loc_deposito}"
+            
+            # Crea un'istanza di Deposito e salvala nel database
+            deposito, created = Deposito.objects.get_or_create(
+                loc_deposito=loc_deposito,
+                defaults={'descrizione': descrizione}
+            )
+            # Stampa le informazioni sulla creazione dell'istanza
+            if created:
+                print(f"Creato deposito: {loc_deposito}")
+            else:
+                print(f"Il deposito {loc_deposito} esiste già.")
+
+            # Se vuoi assegnare altre informazioni al deposito, come DITTA, CODICE e GIACENZE,
+            # puoi farlo qui.
+
+
+
 class HomeVuota(View): # è vuota
     def get(self, request, *args, **kwargs):
         try:
+            popola_tabella_deposito_da_csv('giacenze.csv')
             #popola_interessi("tv")
             a = {}
             context = {
@@ -25,6 +54,8 @@ class HomeVuota(View): # è vuota
             return render(request, "nuova_app/pagina1.html", context)
         except Exception as e:
             print (e)
+
+
 
 
 # views.py
