@@ -1,0 +1,24 @@
+/* deposito_list.css */
+.deposito-list {
+    margin-top: 20px;
+}
+
+.deposito-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.deposito-list th,
+.deposito-list td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.actions {
+    white-space: nowrap;
+}
+
+.add-deposito {
+    margin-top: 20px;
+}

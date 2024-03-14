@@ -1,0 +1,33 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizza Articoli</title>
+</head>
+<body>
+    <h1>Lista degli Articoli</h1>
+    <ul>
+        {% for articolo in object_list %}
+            <li>{{ articolo.descrizione }}</li>
+            <ul>
+                <li>Codice: {{ articolo.codice }}</li>
+                <li>Ditta: {{ articolo.ditta }}</li>
+                <!-- Aggiungi altri campi se necessario -->
+                <li><a href="{% url 'modifica_articolo' articolo.pk %}">Modifica</a></li>
+                <li><a href="{% url 'cancella_articolo' articolo.pk %}">Cancella</a></li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'crea_articolo' %}">Crea Nuovo Articolo</a>
+</body>
+</html>
+    
+{% endblock lista %}

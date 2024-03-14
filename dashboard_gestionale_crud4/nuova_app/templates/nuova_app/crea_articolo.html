@@ -1,0 +1,25 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Articolo</title>
+</head>
+<body>
+    <h1>Crea Nuovo Articolo</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salva</button>
+    </form>
+</body>
+</html>
+    
+{% endblock lista %}

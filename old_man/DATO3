@@ -1,0 +1,151 @@
+sviluppando in Django e utilizzando il seguente models.py
+
+
+class Articoli(models.Model):
+    ditta = models.DecimalField(max_digits=5, decimal_places=0, default=1)
+    codice = models.CharField(max_length=25, blank=True, null=True)
+    descrizione = models.CharField(max_length=72, blank=True, null=True)
+    scorta_minima = models.IntegerField(null=True, blank=True )
+    scorta_massima = models.IntegerField(null=True, blank=True )
+    
+    def __str__(self):
+        return self.descrizione
+
+    class Meta:
+        verbose_name = "Articolo"
+        verbose_name_plural = "Articoli"
+
+
+creami una funzione che mi permette
+di estrapolare dal file "Articoli.csv", separato da ";":
+CODICE
+dove
+models.py
+
+codice = CODICE
+descrizione = DESCRIZIONE
+scorta_minima = SCORTA_MINIMA
+scorta_massima = SCORTA_MASSIMA
+
+e popolami il models.py
+evitando di scrivere un CODICE ripetuto. Il codice deve essere univoco
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data la seguente funzione:
+
+def popola_tabella_deposito_da_csv(file_path):
+    # Apri il file CSV e leggi i dati
+    with open(file_path, mode='r') as file:
+        reader = csv.DictReader(file, delimiter=';')
+        for row in reader:
+            # Ottieni i dati dal CSV
+            loc_deposito = row['DEPOSITO']
+            descrizione = f"Deposito {loc_deposito}"
+            
+            # Crea un'istanza di Deposito e salvala nel database
+            deposito, created = Deposito.objects.get_or_create(
+                loc_deposito=loc_deposito,
+                defaults={'descrizione': descrizione}
+            )
+            # Stampa le informazioni sulla creazione dell'istanza
+            if created:
+                print(f"Creato deposito: {loc_deposito}")
+            else:
+                print(f"Il deposito {loc_deposito}
+
+
+adatta la funzione:
+
+
+def popola_articoli_da_csv(nome_file):
+    codici_esistenti = set(Articoli.objects.values_list('codice', flat=True))
+
+    with open(nome_file, 'r', newline='', encoding='utf-8') as file_csv:
+        lettore = csv.reader(file_csv, delimiter=';')
+        next(lettore)  # Salta l'intestazione del file CSV
+        for riga in lettore:
+            codice, descrizione = riga
+            if codice not in codici_esistenti:
+                Articoli.objects.create(codice=codice, descrizione=descrizione)
+                codici_esistenti.add(codice)
+
+
+sapendo che il models.py di Articoli è il seguente:
+
+class Articoli(models.Model):
+    ditta = models.DecimalField(max_digits=5, decimal_places=0, default=1)
+    codice = models.CharField(max_length=25, blank=True, null=True)
+    descrizione = models.CharField(max_length=72, blank=True, null=True)
+    
+    def __str__(self):
+        return self.descrizione
+
+    class Meta:
+        verbose_name = "Articolo"
+        verbose_name_plural = "Articoli"
+
+
+
+
+
+
+
+
+
+il problema è qui dentro:
+
+for riga in lettore:
+            codice, descrizione = riga
+            if codice not in codici_esistenti:
+                Articoli.objects.create(codice=codice, descrizione=descrizione)
+                codici_esistenti.add(codice)
+                print(f"Creato articolo: {codice}")
+            else:
+                print(f"Il codice {codice} esiste già")
+
+
+
+la procedura deve aprire "Articoli.csv", suddiviso in CODICE, DESCRIZIONE
+e deve popolare il codice del models.py con il CODICE del CSV
+e la descrizione del models.py con la DESCRIZIONE del CSV
+
+creami una bella procedura in python

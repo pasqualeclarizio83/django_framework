@@ -1,0 +1,10 @@
+creami in python
+un file CSV, suddiviso in questo modo e separato da ";".
+Le colonne devono essere:
+DITTA = 1,
+CODICE, può essere ad esempio:
+100, 1000020CON0412110, 
+
+001234Pne10 randomicamente
+DESCRIZIONE, una generica descrizione in corrispondenza del CODICE
+devi crearmi almeno 200 records

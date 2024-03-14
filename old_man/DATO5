@@ -1,0 +1,27 @@
+sviluppando attraverso il framework django
+e avendo il seguente models.py
+
+class Articoli(models.Model):
+    ditta = models.DecimalField(max_digits=5, decimal_places=0, default=1)
+    codice = models.CharField(max_length=25, blank=True, null=True)
+    descrizione = models.CharField(max_length=72, blank=True, null=True)
+    
+    def __str__(self):
+        return self.descrizione
+
+    class Meta:
+        verbose_name = "Articolo"
+        verbose_name_plural = "Articoli"
+
+
+crea la views.py con le Crud Classed Based
+dovresti creare anche il forms.py per la creazione
+e crea i diversi templates:
+
+visualizza_articoli.html
+crea_articolo.html
+modifica_articolo.html
+cancella_articolo.html
+
+e infine le urls.py
+

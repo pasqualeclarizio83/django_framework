@@ -1,0 +1,94 @@
+Sviluppando in Django
+e utilizzando la libreria pandas
+
+apri il file "Articoli.csv", suddiviso da ";"
+e dalle colonne
+CODICE, DESCRIZIONE
+
+e in base al models.py:
+
+class Articoli(models.Model):
+    ditta = models.DecimalField(max_digits=5, decimal_places=0, default=1)
+    codice = models.CharField(max_length=25, blank=True, null=True)
+    descrizione = models.CharField(max_length=72, blank=True, null=True)
+    
+    def __str__(self):
+        return self.descrizione
+
+    class Meta:
+        verbose_name = "Articolo"
+        verbose_name_plural = "Articoli"
+
+
+creami una procedura per popolare: Articoli
+che estrapola dal CSV
+e popola il models.py, codice con CODICE del CSV
+e descrizione con DESCRIZIONE del CSV
+evita i duplicati
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dato il seguente models.py
+
+class Articoli(models.Model):
+    ditta = models.DecimalField(max_digits=5, decimal_places=0, default=1)
+    codice = models.CharField(max_length=25, blank=True, null=True)
+    descrizione = models.CharField(max_length=72, blank=True, null=True)
+    
+    def __str__(self):
+        return self.descrizione
+
+    class Meta:
+        verbose_name = "Articolo"
+        verbose_name_plural = "Articoli"
+
+
+
+creami delle funzione Classes Based, views.py
+per le CRUD
+e creami per ogni CRUD dei templates:
+crea_articolo.html
+visualizza_articolo.html
+modifica_articolo.html
+e
+cancella_articolo.html

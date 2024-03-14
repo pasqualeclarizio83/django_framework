@@ -1,0 +1,172 @@
+Sviluppando in Django
+dato il seguente models.py
+
+
+from django.db import models
+
+class Deposito(models.Model):
+    loc_deposito = models.CharField(max_length=2, blank=True, null=True)
+    descrizione = models.CharField(max_length=120, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.loc_deposito) # str(self.pk)
+
+    class Meta:
+        verbose_name = "Deposito"
+        verbose_name_plural = "Depositi"
+
+
+
+
+devo creare: views.py
+adottando la Classe per la creazione, modifica, cancellazione
+
+
+e crea anche dei template, per la creazione, modifica e cancellazione
+
+
+ed è bene creare anche: urls.py
+con gli endpoint
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dato un CSV, chiamato "giacenza.csv"
+aprilo con la libreria pandas
+
+e leggimi solo:
+
+DITTA, CODICE e GIACENZA
+sono separati da ";"
+in python
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+creami un file CSV, chiamato "giacenze.csv"
+in python, suddiviso in:
+
+DITTA, CODICE e GIACENZA
+separato da ";"
+dove, DITTA = 1
+CODICE deve essere di articoli vari
+e Giacenza, deve rappresentare la quantità, ovvero un numero intero
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+creami un file CSV, chiamato "giacenze.csv"
+in python, suddiviso in:
+
+DITTA, CODICE, DEPOSITO e GIACENZA
+separato da ";"
+dove, DITTA = 1
+CODICE deve essere di articoli vari
+DEPOSITO deve essere costituito dalle Citta Italiane a soli due caratteri
+e Giacenza, deve rappresentare la quantità, ovvero un numero intero
+
+
+
+
+
+
+
+
+
+
+
+
+sviluppando in Django, creami una funzione che mi permette
+di prendere il CSV, "giacenze.csv"
+basato su DITTA, CODICE, DEPOSITO e GIACENZE
+
+
+il models.py è il seguente:
+
+from django.db import models
+
+class Deposito(models.Model):
+    loc_deposito = models.CharField(max_length=2, blank=True, null=True)
+    descrizione = models.CharField(max_length=120, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.loc_deposito) # str(self.pk)
+
+    class Meta:
+        verbose_name = "Deposito"
+        verbose_name_plural = "Depositi"
+
+
+dove loc_deposito, corrisponde AL DEPOSITO del CSV
+devi popolarmi la tabella
+Creami la procedura

@@ -1,0 +1,46 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista dei Depositi</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/deposito_list.css' %}">
+</head>
+<body>
+    <h1>Lista dei Depositi</h1>
+    <div class="deposito-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>Località</th>
+                    <th>Descrizione</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deposito in object_list %}
+                <tr>
+                    <td>{{ deposito.loc_deposito }}</td>
+                    <td>{{ deposito.descrizione }}</td>
+                    <td class="actions">
+                        <a href="{% url 'deposito_edit' deposito.pk %}" class="btn btn-primary">Modifica</a>
+                        <a href="{% url 'deposito_delete' deposito.pk %}" class="btn btn-danger">Cancella</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="add-deposito">
+        <a href="{% url 'deposito_add' %}" class="btn btn-success">Aggiungi deposito</a>
+    </div>
+</body>
+</html>
+    
+{% endblock lista %}

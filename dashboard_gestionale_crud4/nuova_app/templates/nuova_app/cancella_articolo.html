@@ -1,0 +1,26 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancella Articolo</title>
+</head>
+<body>
+    <h1>Cancella Articolo</h1>
+    <p>Sei sicuro di voler cancellare l'articolo "{{ articolo.descrizione }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Conferma Cancellazione</button>
+    </form>
+    <a href="{% url 'visualizza_articoli' %}">Annulla</a>
+</body>
+</html>
+    
+{% endblock lista %}
