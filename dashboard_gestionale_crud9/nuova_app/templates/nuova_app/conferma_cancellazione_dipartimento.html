@@ -1,0 +1,71 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferma Cancellazione Dipartimento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .confirmation-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .confirmation-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #c82333;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <h2>Conferma Cancellazione</h2>
+        <p>Sei sicuro di voler cancellare il dipartimento "{{ dipartimento.nome }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="pk" value="{{ dipartimento.pk }}">
+            <button type="submit" class="btn">Conferma</button>
+            <a href="{% url 'lista_dipartimenti' %}" class="btn btn-secondary">Annulla</a>
+        </form>
+    </div>
+</body>
+</html>
+
+    
+{% endblock lista %}

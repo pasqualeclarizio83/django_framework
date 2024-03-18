@@ -7,6 +7,9 @@ from django.db import models
 class Dipartimento(models.Model):
     nome = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nome
+
 # La relazione 1 a molti è rappresentata 
 # tra Facolta e Corso, in quanto una 
 # facoltà può offrire molti corsi.
