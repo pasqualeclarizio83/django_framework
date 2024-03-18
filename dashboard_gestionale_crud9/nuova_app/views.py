@@ -14,15 +14,25 @@ class HomeVuota(View): # è vuota
         except Exception as e:
             print (e)
 
-# Inizio a gestirmi le Views
-            
-from django.shortcuts import render
-from .models import Dipartimento, Facolta, Corso, Professore, Studente, Insegnamento, Iscrizione
 
-def lista_dipartimenti(request):
-    dipartimenti = Dipartimento.objects.all()
-    return render(request, 'nuova_app/lista_dipartimenti.html', {'dipartimenti': dipartimenti})
+# inizia a gestirmi in base alle Classi
 
-def dettaglio_dipartimento(request, dipartimento_id):
-    dipartimento = Dipartimento.objects.get(id=dipartimento_id)
-    return render(request, 'nuova_app/dettaglio_dipartimento.html', {'dipartimento': dipartimento})
+from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse_lazy
+from .models import Dipartimento
+
+class ListaDipartimentiView(ListView):
+    model = Dipartimento
+    template_name = 'nuova_app/lista_dipartimenti.html'
+    context_object_name = 'dipartimenti'
+
+class DettaglioDipartimentoView(DetailView):
+    model = Dipartimento
+    template_name = 'nuova_app/dettaglio_dipartimento.html'
+    context_object_name = 'dipartimento'
+
+class CreazioneDipartimentoView(CreateView):
+    model = Dipartimento
+    template_name = 'nuova_app/creazione_dipartimento.html'
+    fields = ['nome']
+    success_url = reverse_lazy('lista_dipartimenti')
