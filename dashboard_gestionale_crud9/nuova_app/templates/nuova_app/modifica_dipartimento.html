@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Dipartimenti</title>
+    <title>Modifica Dipartimenti</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,29 +53,12 @@
     </style>
 </head>
 <body>
-    <h1>Lista dei Dipartimenti</h1>
-    <a href="{% url 'crea_dipartimento' %}" class="btn btn-primary">Crea un nuovo dipartimento</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Dettagli</th>
-                <th>Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dipartimento in dipartimenti %}
-                <tr>
-                    <td>{{ dipartimento.nome }}</td>
-                    <td><a href="{% url 'dettaglio_dipartimento' dipartimento.id %}" class="btn btn-info">Dettagli</a></td>
-                    <td>
-                        <a href="{% url 'modifica_dipartimento' dipartimento.id %}" class="btn btn-warning">Modifica</a>
-                        <a href="{% url 'cancella_dipartimento' dipartimento.id %}" class="btn btn-danger">Cancella</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>Modifica Dipartimento</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Salva</button>
+    </form>
 </body>
 </html>
     

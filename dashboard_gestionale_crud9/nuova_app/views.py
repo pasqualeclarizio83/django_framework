@@ -17,7 +17,7 @@ class HomeVuota(View): # è vuota
 
 # inizia a gestirmi in base alle Classi
 
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Dipartimento
 
@@ -35,4 +35,15 @@ class CreazioneDipartimentoView(CreateView):
     model = Dipartimento
     template_name = 'nuova_app/creazione_dipartimento.html'
     fields = ['nome']
+    success_url = reverse_lazy('lista_dipartimenti')
+
+class ModificaDipartimentoView(UpdateView):
+    model = Dipartimento
+    template_name = 'nuova_app/modifica_dipartimento.html'
+    fields = ['nome']
+    success_url = reverse_lazy('lista_dipartimenti')
+
+class CancellaDipartimentoView(DeleteView):
+    model = Dipartimento
+    template_name = 'nuova_app/conferma_cancellazione_dipartimento.html'
     success_url = reverse_lazy('lista_dipartimenti')

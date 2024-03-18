@@ -1,0 +1,26 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancellazione Dipartimento</title>
+</head>
+<body>
+    <h1>Conferma Cancellazione Dipartimento</h1>
+    <p>Sei sicuro di voler cancellare il dipartimento "{{ dipartimento.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Conferma</button>
+        <a href="{% url 'lista_dipartimenti' %}" class="btn btn-secondary">Annulla</a>
+    </form>
+</body>
+</html>
+    
+{% endblock lista %}

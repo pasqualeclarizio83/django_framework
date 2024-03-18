@@ -16,5 +16,7 @@ urlpatterns = [
     path('dipartimenti/', views.ListaDipartimentiView.as_view(), name='lista_dipartimenti'),
     path('dipartimenti/<int:pk>/', views.DettaglioDipartimentoView.as_view(), name='dettaglio_dipartimento'),
     path('dipartimenti/crea/', views.CreazioneDipartimentoView.as_view(), name='crea_dipartimento'),
+    path('dipartimenti/<int:pk>/modifica/', views.ModificaDipartimentoView.as_view(), name='modifica_dipartimento'),
+    path('dipartimenti/<int:pk>/cancella/', views.CancellaDipartimentoView.as_view(), name='cancella_dipartimento'),
 #
 ]
