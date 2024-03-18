@@ -1,0 +1,24 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio Dipartimento</title>
+</head>
+<body>
+    <h1>Dettaglio del Dipartimento {{ dipartimento.nome }}</h1>
+    <ul>
+        <li>Nome: {{ dipartimento.nome }}</li>
+        <!-- Aggiungi altri dettagli se necessario -->
+    </ul>
+</body>
+</html>
+    
+{% endblock lista %}

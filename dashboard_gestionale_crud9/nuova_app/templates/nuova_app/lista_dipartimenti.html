@@ -1,0 +1,25 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Dipartimenti</title>
+</head>
+<body>
+    <h1>Lista dei Dipartimenti</h1>
+    <ul>
+        {% for dipartimento in dipartimenti %}
+            <li><a href="{% url 'dettaglio_dipartimento' dipartimento.id %}">{{ dipartimento.nome }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+    
+{% endblock lista %}
