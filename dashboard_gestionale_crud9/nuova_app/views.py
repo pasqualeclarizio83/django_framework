@@ -322,4 +322,63 @@ class CancellaInsegnamentoView(View):
         insegnamento.delete()
         return redirect(reverse('lista_insegnamenti'))
 
+
+# ISCRIZIONE
+    
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.urls import reverse
+from .models import Iscrizione
+from .forms import IscrizioneForm
+
+class ListaIscrizioniView(View):
+    template_name = 'nuova_app/lista_iscrizioni.html'
+
+    def get(self, request):
+        iscrizioni = Iscrizione.objects.all()
+        return render(request, self.template_name, {'iscrizioni': iscrizioni})
+
+class CreaIscrizioneView(View):
+    template_name = 'nuova_app/crea_iscrizione.html'
+
+    def get(self, request):
+        form = IscrizioneForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = IscrizioneForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_iscrizioni')
+        return render(request, self.template_name, {'form': form})
+
+class ModificaIscrizioneView(View):
+    template_name = 'nuova_app/modifica_iscrizione.html'
+
+    def get(self, request, pk):
+        iscrizione = get_object_or_404(Iscrizione, pk=pk)
+        form = IscrizioneForm(instance=iscrizione)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        iscrizione = get_object_or_404(Iscrizione, pk=pk)
+        form = IscrizioneForm(request.POST, instance=iscrizione)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_iscrizioni')
+        return render(request, self.template_name, {'form': form})
+
+class CancellaIscrizioneView(View):
+    template_name = 'nuova_app/conferma_cancellazione_iscrizione.html'
+
+    def get(self, request, pk):
+        iscrizione = get_object_or_404(Iscrizione, pk=pk)
+        return render(request, self.template_name, {'iscrizione': iscrizione})
+
+    def post(self, request, pk):
+        iscrizione = get_object_or_404(Iscrizione, pk=pk)
+        iscrizione.delete()
+        return redirect('lista_iscrizioni')
+
+
     

@@ -45,3 +45,13 @@ class InsegnamentoForm(forms.ModelForm):
     class Meta:
         model = Insegnamento
         fields = ['nome', 'professore', 'corso']
+
+# iscrizione
+
+from django import forms
+from .models import Iscrizione
+
+class IscrizioneForm(forms.ModelForm):
+    class Meta:
+        model = Iscrizione
+        fields = ['studente', 'insegnamento']

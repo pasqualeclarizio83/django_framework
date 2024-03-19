@@ -21,7 +21,11 @@ from .views import (
     CreaInsegnamentoView,
     ModificaInsegnamentoView,
     CancellaInsegnamentoView,
-    ListaInsegnamentiView
+    ListaInsegnamentiView,
+
+
+
+    ListaIscrizioniView, CreaIscrizioneView, ModificaIscrizioneView, CancellaIscrizioneView
 
 )
 
@@ -74,5 +78,11 @@ urlpatterns = [
     path('insegnamenti/modifica/<int:pk>/', ModificaInsegnamentoView.as_view(), name='modifica_insegnamento'),
     path('insegnamenti/cancella/<int:pk>/', CancellaInsegnamentoView.as_view(), name='cancella_insegnamento'),
 
+    # ISCRIZIONE
+
+    path('iscrizioni/', ListaIscrizioniView.as_view(), name='lista_iscrizioni'),
+    path('crea_iscrizione/', CreaIscrizioneView.as_view(), name='crea_iscrizione'),
+    path('modifica/<int:pk>/', ModificaIscrizioneView.as_view(), name='modifica_iscrizione'),
+    path('cancella/<int:pk>/', CancellaIscrizioneView.as_view(), name='cancella_iscrizione'),
 #
 ]

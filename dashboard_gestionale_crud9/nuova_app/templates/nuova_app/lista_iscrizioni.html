@@ -1,0 +1,89 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block lista %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Iscrizioni</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista Iscrizioni</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Studente</th>
+                <th>Insegnamento</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for iscrizione in iscrizioni %}
+                <tr>
+                    <td>{{ iscrizione.studente }}</td>
+                    <td>{{ iscrizione.insegnamento }}</td>
+                    <td>
+                        <a href="{% url 'modifica_iscrizione' iscrizione.pk %}" class="btn btn-primary">Modifica</a>
+                        <form id="form-delete-{{ iscrizione.pk }}" method="post" action="{% url 'cancella_iscrizione' iscrizione.pk %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="button" onclick="confirmDelete('{{ iscrizione.pk }}')" class="btn btn-danger">Cancella</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'crea_iscrizione' %}" class="btn btn-primary">Crea nuova iscrizione</a>
+
+    <script>
+        function confirmDelete(iscrizioneId) {
+            if (confirm('Sei sicuro di voler cancellare questa iscrizione?')) {
+                document.getElementById('form-delete-' + iscrizioneId).submit();
+            }
+        }
+    </script>
+</body>
+</html>
+{% endblock lista %}

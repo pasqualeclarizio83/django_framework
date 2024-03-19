@@ -48,10 +48,16 @@ class Studente(models.Model):
     cognome = models.CharField(max_length=100)
     corso_di_laurea = models.ForeignKey(Corso, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.nome} {self.cognome} ({self.corso_di_laurea.nome})"
+
 class Insegnamento(models.Model):
     nome = models.CharField(max_length=100)
     professore = models.ForeignKey(Professore, on_delete=models.CASCADE)
     corso = models.ForeignKey(Corso, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.nome} {self.professore} ({self.corso.nome})"
 
 class Iscrizione(models.Model):
     studente = models.ForeignKey(Studente, on_delete=models.CASCADE)
