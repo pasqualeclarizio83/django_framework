@@ -4,7 +4,9 @@ from .views import (
     
     HomeVuota,
 
-    ListaFacoltaView, CreaFacoltaView, ModificaFacoltaView, CancellaFacoltaView
+    ListaFacoltaView, CreaFacoltaView, ModificaFacoltaView, CancellaFacoltaView,
+
+    GestioneCorsiView
 
 )
 
@@ -27,5 +29,12 @@ urlpatterns = [
     path('crea/', CreaFacoltaView.as_view(), name='crea_facolta'),
     path('modifica/<int:pk>/', ModificaFacoltaView.as_view(), name='modifica_facolta'),
     path('cancella/<int:pk>/', CancellaFacoltaView.as_view(), name='cancella_facolta'),
+
+    # CORSI
+
+    path('corsi/', views.GestioneCorsiView.as_view(), name='gestione_corsi'),
+    path('corsi/crea/', views.CreaCorsoView.as_view(), name='crea_corso'),
+    path('corsi/modifica/<int:pk>/', views.ModificaCorsoView.as_view(), name='modifica_corso'),
+    path('corsi/cancella/<int:pk>/', views.CancellaCorsoView.as_view(), name='cancella_corso'),
 #
 ]

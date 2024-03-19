@@ -18,6 +18,9 @@ class Facolta(models.Model):
     nome = models.CharField(max_length=100)
     dipartimento = models.ForeignKey(Dipartimento, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nome
+
 class Corso(models.Model):
     nome = models.CharField(max_length=100)
     facolta = models.ForeignKey(Facolta, on_delete=models.CASCADE)
