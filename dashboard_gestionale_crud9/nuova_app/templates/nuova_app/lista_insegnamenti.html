@@ -1,0 +1,85 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Insegnamenti -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Insegnamenti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista degli Insegnamenti</h1>
+    <a href="{% url 'crea_insegnamento' %}" class="btn btn-primary">Crea un nuovo insegnamento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Professore</th>
+                <th>Corso</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for insegnamento in insegnamenti %}
+                <tr>
+                    <td>{{ insegnamento.nome }}</td>
+                    <td>{{ insegnamento.professore }}</td>
+                    <td>{{ insegnamento.corso }}</td>
+                    
+                    <td>
+                        <a href="{% url 'modifica_insegnamento' insegnamento.pk %}" class="btn btn-warning">Modifica</a>
+                        <a href="{% url 'cancella_insegnamento' insegnamento.pk %}" class="btn btn-danger">Cancella</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+{% endblock lista %}

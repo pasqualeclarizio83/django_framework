@@ -26,3 +26,22 @@ class ProfessoreForm(forms.ModelForm):
     class Meta:
         model = Professore
         fields = ['nome', 'cognome', 'facolta']
+
+# STUDENTE
+        
+from .models import Studente
+        
+class StudenteForm(forms.ModelForm):
+    class Meta:
+        model = Studente
+        fields = ['nome', 'cognome', 'corso_di_laurea']
+
+# Insegnamento
+        
+from django import forms
+from .models import Insegnamento
+
+class InsegnamentoForm(forms.ModelForm):
+    class Meta:
+        model = Insegnamento
+        fields = ['nome', 'professore', 'corso']

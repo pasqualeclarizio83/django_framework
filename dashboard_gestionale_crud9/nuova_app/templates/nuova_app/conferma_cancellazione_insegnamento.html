@@ -1,0 +1,25 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+<!-- Gestione Imprese -->
+
+{% block lista %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferma cancellazione Insegnamento</title>
+</head>
+<body>
+    <h1>Conferma cancellazione insegnamento</h1>
+    <p>Sei sicuro di voler cancellare l'insegnamento "{{ insegnamento.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Conferma cancellazione</button>
+    </form>
+</body>
+</html>
+    
+{% endblock lista %}

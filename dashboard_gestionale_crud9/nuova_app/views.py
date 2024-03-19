@@ -205,3 +205,121 @@ class CancellaProfessoreView(View):
         professore = get_object_or_404(Professore, pk=pk)
         professore.delete()
         return redirect('gestione_professori')
+
+
+# STUDENTE
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.urls import reverse
+from .models import Studente
+from .forms import StudenteForm
+
+class ListaStudentiView(View):
+    template_name = 'nuova_app/lista_studenti.html'
+
+    def get(self, request):
+        studenti = Studente.objects.all()
+        return render(request, self.template_name, {'studenti': studenti})
+
+class CreaStudenteView(View):
+    template_name = 'nuova_app/crea_studente.html'
+
+    def get(self, request):
+        form = StudenteForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = StudenteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('lista_studenti'))
+        return render(request, self.template_name, {'form': form})
+
+class ModificaStudenteView(View):
+    template_name = 'nuova_app/modifica_studente.html'
+
+    def get(self, request, pk):
+        studente = get_object_or_404(Studente, pk=pk)
+        form = StudenteForm(instance=studente)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        studente = get_object_or_404(Studente, pk=pk)
+        form = StudenteForm(request.POST, instance=studente)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('lista_studenti'))
+        return render(request, self.template_name, {'form': form})
+
+class CancellaStudenteView(View):
+    template_name = 'nuova_app/conferma_cancellazione_studente.html'
+
+    def get(self, request, pk):
+        studente = get_object_or_404(Studente, pk=pk)
+        return render(request, self.template_name, {'studente': studente})
+
+    def post(self, request, pk):
+        studente = get_object_or_404(Studente, pk=pk)
+        studente.delete()
+        return redirect(reverse('lista_studenti'))
+
+
+# INSEGNAMENTO
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.urls import reverse
+from .models import Insegnamento
+from .forms import InsegnamentoForm
+
+class ListaInsegnamentiView(View):
+    template_name = 'nuova_app/lista_insegnamenti.html'
+
+    def get(self, request):
+        insegnamenti = Insegnamento.objects.all()
+        return render(request, self.template_name, {'insegnamenti': insegnamenti})
+
+class CreaInsegnamentoView(View):
+    template_name = 'nuova_app/crea_insegnamento.html'
+
+    def get(self, request):
+        form = InsegnamentoForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = InsegnamentoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('lista_insegnamenti'))
+        return render(request, self.template_name, {'form': form})
+
+class ModificaInsegnamentoView(View):
+    template_name = 'nuova_app/modifica_insegnamento.html'
+
+    def get(self, request, pk):
+        insegnamento = get_object_or_404(Insegnamento, pk=pk)
+        form = InsegnamentoForm(instance=insegnamento)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        insegnamento = get_object_or_404(Insegnamento, pk=pk)
+        form = InsegnamentoForm(request.POST, instance=insegnamento)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('lista_insegnamenti'))
+        return render(request, self.template_name, {'form': form})
+
+class CancellaInsegnamentoView(View):
+    template_name = 'nuova_app/conferma_cancellazione_insegnamento.html'
+
+    def get(self, request, pk):
+        insegnamento = get_object_or_404(Insegnamento, pk=pk)
+        return render(request, self.template_name, {'insegnamento': insegnamento})
+
+    def post(self, request, pk):
+        insegnamento = get_object_or_404(Insegnamento, pk=pk)
+        insegnamento.delete()
+        return redirect(reverse('lista_insegnamenti'))
+
+    

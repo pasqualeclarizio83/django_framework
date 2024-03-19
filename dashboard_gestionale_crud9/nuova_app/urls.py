@@ -12,6 +12,17 @@ from .views import (
 
     GestioneProfessoriView, CreaProfessoreView, ModificaProfessoreView, CancellaProfessoreView,
 
+    # Studente
+
+    ListaStudentiView, CreaStudenteView, ModificaStudenteView, CancellaStudenteView, 
+
+    # Insegnamenti
+
+    CreaInsegnamentoView,
+    ModificaInsegnamentoView,
+    CancellaInsegnamentoView,
+    ListaInsegnamentiView
+
 )
 
 from . import views
@@ -47,5 +58,21 @@ urlpatterns = [
     path('professori/crea/', CreaProfessoreView.as_view(), name='crea_professore'),
     path('professori/modifica/<int:pk>/', ModificaProfessoreView.as_view(), name='modifica_professore'),
     path('professori/cancella/<int:pk>/', CancellaProfessoreView.as_view(), name='cancella_professore'),
+
+    # STUDENTE
+
+    path('studenti/', views.ListaStudentiView.as_view(), name='lista_studenti'),
+    path('studenti/crea/', views.CreaStudenteView.as_view(), name='crea_studente'),
+    path('studenti/modifica/<int:pk>/', views.ModificaStudenteView.as_view(), name='modifica_studente'),
+    path('studenti/cancella/<int:pk>/', views.CancellaStudenteView.as_view(), name='cancella_studente'),
+
+
+    # INSEGNAMENTO
+
+    path('insegnamenti/', ListaInsegnamentiView.as_view(), name='lista_insegnamenti'),
+    path('insegnamenti/crea/', CreaInsegnamentoView.as_view(), name='crea_insegnamento'),
+    path('insegnamenti/modifica/<int:pk>/', ModificaInsegnamentoView.as_view(), name='modifica_insegnamento'),
+    path('insegnamenti/cancella/<int:pk>/', CancellaInsegnamentoView.as_view(), name='cancella_insegnamento'),
+
 #
 ]
