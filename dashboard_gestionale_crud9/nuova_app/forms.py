@@ -16,3 +16,13 @@ class CorsoForm(forms.ModelForm):
     class Meta:
         model = Corso
         fields = ['nome', 'facolta']
+
+# Professore Form
+        
+from django import forms
+from .models import Professore
+
+class ProfessoreForm(forms.ModelForm):
+    class Meta:
+        model = Professore
+        fields = ['nome', 'cognome', 'facolta']

@@ -154,3 +154,54 @@ class CancellaCorsoView(View):
         corso = get_object_or_404(Corso, pk=pk)
         corso.delete()
         return redirect('gestione_corsi')
+    
+# PROFESSORE
+    
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.urls import reverse
+from .models import Professore
+from .forms import ProfessoreForm
+
+class GestioneProfessoriView(View):
+    template_name = 'nuova_app/gestione_professori.html'
+
+    def get(self, request):
+        professori = Professore.objects.all()
+        return render(request, self.template_name, {'professori': professori})
+
+class CreaProfessoreView(View):
+    template_name = 'nuova_app/crea_professore.html'
+
+    def get(self, request):
+        form = ProfessoreForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = ProfessoreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gestione_professori')
+        return render(request, self.template_name, {'form': form})
+
+class ModificaProfessoreView(View):
+    template_name = 'nuova_app/modifica_professore.html'
+
+    def get(self, request, pk):
+        professore = get_object_or_404(Professore, pk=pk)
+        form = ProfessoreForm(instance=professore)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        professore = get_object_or_404(Professore, pk=pk)
+        form = ProfessoreForm(request.POST, instance=professore)
+        if form.is_valid():
+            form.save()
+            return redirect('gestione_professori')
+        return render(request, self.template_name, {'form': form})
+
+class CancellaProfessoreView(View):
+    def post(self, request, pk):
+        professore = get_object_or_404(Professore, pk=pk)
+        professore.delete()
+        return redirect('gestione_professori')
